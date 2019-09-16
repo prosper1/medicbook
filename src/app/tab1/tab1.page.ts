@@ -14,6 +14,7 @@ import { Booking } from 'bookings';
 export class Tab1Page {
 
   Bookings: Booking[] = [];
+  userId: string = '000';
 
   constructor(
     public api: ApiService,
@@ -29,7 +30,12 @@ export class Tab1Page {
     await this.api.getBookings()
       .subscribe(res => {
         this.Bookings = res;
-        console.log(this.Bookings);
+        var userBooking =  this.Bookings.filter(function(booking) {
+          return booking.patient_id == '000';
+        });
+          
+
+        console.log(userBooking);
         loading.dismiss();
       }, err => {
         console.log(err);

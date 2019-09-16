@@ -1,0 +1,9 @@
+//Specify Api Object
+export class Prescription {
+    date: string;
+    doctor_id: string
+    id: string
+    info: string
+    patientId: string
+    title: string
+}
