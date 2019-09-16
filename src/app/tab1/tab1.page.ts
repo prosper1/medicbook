@@ -1,12 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../api.service';
+import { Booking } from 'bookings';
+// import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
+//ToDo : Implement on init on this class 
 export class Tab1Page {
 
-  constructor() {}
+  Bookings: Booking[] = [];
+
+  constructor(
+    public api: ApiService,
+    public loadingController: LoadingController,
+    public router: Router,
+    public route: ActivatedRoute) {this.getBookings()}
+
+  async getBookings() {
+    const loading = await this.loadingController.create({
+      message: 'Loading...'
+    });
+    await loading.present();
+    await this.api.getBookings()
+      .subscribe(res => {
+        this.Bookings = res;
+        console.log(this.Bookings);
+        loading.dismiss();
+      }, err => {
+        console.log(err);
+        loading.dismiss();
+      });
+  }
 
 }
