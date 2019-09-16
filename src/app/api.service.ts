@@ -3,11 +3,12 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Booking } from 'bookings';
+import { Prescription } from './prescription'
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type' : 'application/json'})
 };
-const apiUrl = 'https://hosi-app.herokuapp.com/Bookings';
+const apiUrl = 'https://hosi-app.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,8 @@ export class ApiService {
   }
 
   getBookings(): Observable<Booking[]> {
-    return this.http.get<Booking[]>(apiUrl)
+    const url = `${apiUrl}Bookings`;
+    return this.http.get<Booking[]>(url)
       .pipe(
         tap(Booking => console.log('fetched Bookings')),
         catchError(this.handleError('getBookings', []))
@@ -66,43 +68,44 @@ export class ApiService {
   }
 
 
-  getPrescriptions(): Observable<Booking[]> {
-    return this.http.get<Booking[]>(apiUrl)
+  getPrescriptions(): Observable<Prescription[]> {
+    const url = `${apiUrl}Bookings`;
+    return this.http.get<Prescription[]>(apiUrl)
       .pipe(
-        tap(Booking => console.log('fetched prescription')),
+        tap(Prescription => console.log('fetched prescription')),
         catchError(this.handleError('getPrescriptions', []))
       );
   }
   
-  getPrescription(id: any): Observable<Booking> {
+  getPrescription(id: any): Observable<Prescription> {
     const url = `${apiUrl}/${id}`;
-    return this.http.get<Booking>(url).pipe(
+    return this.http.get<Prescription>(url).pipe(
       tap(_ => console.log(`fetched prescription id=${id}`)),
-      catchError(this.handleError<Booking>(`getPrescrption id=${id}`))
+      catchError(this.handleError<Prescription>(`getPrescrption id=${id}`))
     );
   }
   
-  addPrescription(Booking: Booking): Observable<Booking> {
-    return this.http.post<Booking>(apiUrl, Booking, httpOptions).pipe(
-      tap((prod: Booking) => console.log(`added prescription w/ id=${prod.id}`)),
-      catchError(this.handleError<Booking>('addPrescription'))
+  addPrescription(Prescription: Prescription): Observable<Prescription> {
+    return this.http.post<Prescription>(apiUrl, Prescription, httpOptions).pipe(
+      tap((prod: Prescription) => console.log(`added prescription w/ id=${prod.id}`)),
+      catchError(this.handleError<Prescription>('addPrescription'))
     );
   }
   
-  updatePrescription(id: any, Booking: any): Observable<any> {
+  updatePrescription(id: any, Prescription: any): Observable<any> {
     const url = `${apiUrl}/${id}`;
-    return this.http.put(url, Booking, httpOptions).pipe(
+    return this.http.put(url, Prescription, httpOptions).pipe(
       tap(_ => console.log(`updated prescription id=${id}`)),
       catchError(this.handleError<any>('updatePrescription'))
     );
   }
   
-  deletePrescription(id: any): Observable<Booking> {
+  deletePrescription(id: any): Observable<Prescription> {
     const url = `${apiUrl}/${id}`;
   
-    return this.http.delete<Booking>(url, httpOptions).pipe(
+    return this.http.delete<Prescription>(url, httpOptions).pipe(
       tap(_ => console.log(`deleted prescription id=${id}`)),
-      catchError(this.handleError<Booking>('deletePrescription'))
+      catchError(this.handleError<Prescription>('deletePrescription'))
     );
   }
 }

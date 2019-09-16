@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../api.service';
+import { Prescription } from '../prescription';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +11,35 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  Prescriptions: Prescription[] = [];
+  userId: string = '000';
 
+
+  constructor(
+    public api: ApiService,
+    public loadingController: LoadingController,
+    public router: Router,
+    public route: ActivatedRoute) {this.getPrescription()}
+
+  
+    async getPrescription() {
+      const loading = await this.loadingController.create({
+        message: 'Loading...'
+      });
+      await loading.present();
+      await this.api.getPrescriptions()
+        .subscribe(res => {
+          this.Prescriptions = res;
+          var userBooking =  this.Prescriptions.filter(function(prescription) {
+            return prescription.patient_id == '000';
+          });
+            
+  
+          console.log(userBooking);
+          loading.dismiss();
+        }, err => {
+          console.log(err);
+          loading.dismiss();
+        });
+    }
 }
