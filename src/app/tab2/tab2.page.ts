@@ -13,6 +13,7 @@ export class Tab2Page {
 
   Prescriptions: Prescription[] = [];
   userId: string = '000';
+  msg: string = ''
 
 
   constructor(
@@ -30,12 +31,17 @@ export class Tab2Page {
       await this.api.getPrescriptions()
         .subscribe(res => {
           this.Prescriptions = res;
-          var userBooking =  this.Prescriptions.filter(function(prescription) {
+          console.log(this.Prescriptions)
+          var userPrescription =  this.Prescriptions.filter(function(prescription) {
             return prescription.patientId == '000';
           });
-            
-  
-          console.log(userBooking);
+
+          this.Prescriptions = userPrescription
+
+          if(this.Prescriptions.length == 0){
+            this.msg = 'You dont have prescriptions'
+          }
+          console.log(userPrescription);
           loading.dismiss();
         }, err => {
           console.log(err);

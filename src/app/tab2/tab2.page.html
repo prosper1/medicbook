@@ -1,9 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Prescription
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content text-center class="vertical-align-content">
+  <div>
+    
+    <ion-grid>
+        <ion-row>
+              <ion-col>
+                  <h3>{{msg}}</h3>
+              </ion-col>
+        </ion-row>
+  </ion-grid>
+  <ion-item *ngFor="let p of Prescriptions" class="example-item" href="/tabs/(details:{{p._id}})" cdkDrag>
+    <ion-icon name="desktop" slot="start"></ion-icon>
+    {{p.title}}
+    <div class="item-note" slot="end">
+      {{p.date | slice:0:16}}
+    </div>
+  </ion-item>
+  </div>
+</ion-content>
 
-<ion-content></ion-content>
+    
+        <ion-button expand="block">Book Doctor appointment</ion-button>
+  
+<br>

@@ -69,8 +69,8 @@ export class ApiService {
 
 
   getPrescriptions(): Observable<Prescription[]> {
-    const url = `${apiUrl}Bookings`;
-    return this.http.get<Prescription[]>(apiUrl)
+    const url = `${apiUrl}Prescriptions`;
+    return this.http.get<Prescription[]>(url)
       .pipe(
         tap(Prescription => console.log('fetched prescription')),
         catchError(this.handleError('getPrescriptions', []))
