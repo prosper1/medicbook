@@ -15,6 +15,7 @@ export class Tab1Page {
 
   Bookings: Booking[] = [];
   userId: string = '000';
+  msg: string = '';
 
   constructor(
     public api: ApiService,
@@ -33,9 +34,14 @@ export class Tab1Page {
         var userBooking =  this.Bookings.filter(function(booking) {
           return booking.patient_id == '000';
         });
+        this.Bookings = userBooking
+        if (this.Bookings.length == 0){
+          this.msg = 'You do not have any bookings'
+        }
+
           
 
-        console.log(userBooking);
+        console.log(this.Bookings);
         loading.dismiss();
       }, err => {
         console.log(err);

@@ -4,6 +4,6 @@ export class Booking {
     doctor_id: string
     id: string
     info: string
-    patientId: string
+    patient_id: string
     title: string
 }
