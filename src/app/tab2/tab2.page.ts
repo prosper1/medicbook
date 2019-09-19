@@ -31,7 +31,7 @@ export class Tab2Page {
         .subscribe(res => {
           this.Prescriptions = res;
           var userBooking =  this.Prescriptions.filter(function(prescription) {
-            return prescription.patient_id == '000';
+            return prescription.patientId == '000';
           });
             
   
