@@ -13,7 +13,7 @@ export class Tab2Page {
 
   Prescriptions: Prescription[] = [];
   userId: string = '000';
-  msg: string = ''
+  msg: string = 'Prescriptions'
 
 
   constructor(

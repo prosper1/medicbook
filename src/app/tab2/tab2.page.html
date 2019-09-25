@@ -1,15 +1,21 @@
-<ion-content text-center class="vertical-align-content">
+<ion-content>
   <div>
     
-    <ion-grid>
-        <ion-row>
-              <ion-col>
-                  <h3>{{msg}}</h3>
-              </ion-col>
-        </ion-row>
-  </ion-grid>
+      <ion-grid>
+          <ion-row>
+                <ion-col>
+                    <ion-text color="primary">
+                        <h2>{{msg}}</h2>
+                      </ion-text>
+                      <ion-item-divider>
+                        </ion-item-divider>
+                    
+                </ion-col>
+          </ion-row>
+    </ion-grid>
+
   <ion-item *ngFor="let p of Prescriptions" class="example-item" href="/tabs/(details:{{p._id}})" cdkDrag>
-    <ion-icon name="desktop" slot="start"></ion-icon>
+    <ion-icon name="heart" slot="start"></ion-icon>
     {{p.title}}
     <div class="item-note" slot="end">
       {{p.date | slice:0:16}}

@@ -15,7 +15,7 @@ export class Tab1Page {
 
   Bookings: Booking[] = [];
   userId: string = '000';
-  msg: string = '';
+  msg: string = 'Bookings';
 
   constructor(
     public api: ApiService,
