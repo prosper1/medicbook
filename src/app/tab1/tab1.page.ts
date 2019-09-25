@@ -49,4 +49,9 @@ export class Tab1Page {
       });
   }
 
+  onMakeBooking() {
+    this.router.navigate(['/booking-add']);
+    
+  }
+
 }

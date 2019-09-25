@@ -6,7 +6,7 @@ import { Booking } from 'bookings';
 import { Prescription } from './prescription'
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type' : 'application/json'})
+  headers: new HttpHeaders({'Content-Type' : 'application/json', 'Access-Control-Allow-Origin': '*'})
 };
 const apiUrl = 'https://hosi-app.herokuapp.com/';
 
@@ -44,7 +44,8 @@ export class ApiService {
   }
   
   addBooking(Booking: Booking): Observable<Booking> {
-    return this.http.post<Booking>(apiUrl, Booking, httpOptions).pipe(
+    const url = `${apiUrl}Bookings`;
+    return this.http.post<Booking>(url, Booking, httpOptions).pipe(
       tap((prod: Booking) => console.log(`added Booking w/ id=${prod.id}`)),
       catchError(this.handleError<Booking>('addBooking'))
     );

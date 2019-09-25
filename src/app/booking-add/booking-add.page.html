@@ -12,7 +12,7 @@
               </ion-col>
         </ion-row>
   </ion-grid>
-  <ion-item class="example-item" href="/tabs/(details:)" cdkDrag>
+  <ion-item class="example-item" (click)="onSelect()" cdkDrag>
     dr JH thhh djdj
     <div class="item-note" slot="end">
       
@@ -33,6 +33,6 @@
   
 
 </ion-content>
-<ion-button expand="block" >Cancel..<ion-icon name="back"></ion-icon></ion-button>
+<ion-button expand="block"  (click)="onCancel()">Cancel..<ion-icon name="back"></ion-icon></ion-button>
   
 <br>

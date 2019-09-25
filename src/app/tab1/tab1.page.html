@@ -22,7 +22,7 @@
               {{p.date | slice:0:16}}
           </ion-col>
           <ion-col>
-            {{p.doctor_id}}
+            
           </ion-col>
           
         </ion-row>
@@ -37,6 +37,6 @@
 </ion-content>
 
     
-        <ion-button expand="block" >Book Doctor appointment  ..<ion-icon name="medkit"></ion-icon></ion-button>
+        <ion-button expand="block"  (click)="onMakeBooking()">Book Doctor appointment  ..<ion-icon name="medkit"></ion-icon></ion-button>
   
 <br>
