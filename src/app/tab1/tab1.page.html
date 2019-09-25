@@ -9,12 +9,25 @@
         </ion-row>
   </ion-grid>
   <ion-item *ngFor="let p of Bookings" class="example-item" href="/tabs/(details:{{p._id}})" cdkDrag>
-    <ion-icon name="desktop" slot="start"></ion-icon>
+    
     {{p.title}}
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+              {{p.date | slice:0:16}}
+          </ion-col>
+          <ion-col>
+            {{p.doctor_id}}
+          </ion-col>
+          
+        </ion-row>
+    </ion-grid>
     <div class="item-note" slot="end">
-      {{p.date | slice:0:16}}
+      
     </div>
   </ion-item>
+
+  
   </div>
 </ion-content>
 
