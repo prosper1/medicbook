@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { Doctor } from '../doctor'
 
 @Component({
   selector: 'app-booking-add',
@@ -9,6 +10,7 @@ import { ApiService } from '../api.service';
 })
 export class BookingAddPage implements OnInit {
 
+  Doctors: Doctor[] = [];
   date: string;
   doctor_id: string
   id: string
@@ -20,6 +22,13 @@ export class BookingAddPage implements OnInit {
     private api: ApiService,) { }
 
   ngOnInit() {
+    this.api.getDoctors()
+      .subscribe(res => {
+        this.Doctors = res;
+        console.log(this.Doctors);
+      }, err => {
+        console.log(err);
+      });
   }
 
   onSelect(dr:any) {
@@ -28,7 +37,7 @@ export class BookingAddPage implements OnInit {
     
     var booking_data = {
       "date" : this.date,
-      "doctor_id": "003",
+      "doctor_id": dr,
       "info":"booking : 1st from mobile",
       "id": "0330030303030",
       "patient_id": "003",

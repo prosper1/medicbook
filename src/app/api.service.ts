@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, tap, map } from 'rxjs/operators';
 import { Booking } from 'bookings';
 import { Prescription } from './prescription'
+import { Doctor } from './doctor';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type' : 'application/json', 'Access-Control-Allow-Origin': '*'})
@@ -109,4 +110,15 @@ export class ApiService {
       catchError(this.handleError<Prescription>('deletePrescription'))
     );
   }
+
+  getDoctors(): Observable<Doctor[]> {
+    const url = `${apiUrl}Doctors`;
+    return this.http.get<Doctor[]>(url)
+      .pipe(
+        tap(Booking => console.log('fetched Bookings')),
+        catchError(this.handleError('getBookings', []))
+      );
+  }
+
+  
 }

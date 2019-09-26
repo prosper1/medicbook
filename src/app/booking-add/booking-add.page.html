@@ -12,20 +12,8 @@
               </ion-col>
         </ion-row>
   </ion-grid>
-  <ion-item class="example-item" (click)="onSelect()" cdkDrag>
-    dr JH thhh djdj
-    <div class="item-note" slot="end">
-      
-    </div>
-  </ion-item>
-  <ion-item class="example-item" href="/tabs/(details:)" cdkDrag>
-    dr JH thhh djdj
-    <div class="item-note" slot="end">
-      
-    </div>
-  </ion-item>
-  <ion-item class="example-item" href="/tabs/(details:)" cdkDrag>
-    dr JH thhh djdj
+  <ion-item *ngFor="let p of Doctors" class="example-item" (click)="onSelect(p.id)" cdkDrag>
+    {{p.name}} + {{p.speciality}}
     <div class="item-note" slot="end">
       
     </div>
