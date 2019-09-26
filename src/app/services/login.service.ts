@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import * as firebase from 'firebase';
 
 
 @Injectable({
@@ -14,7 +16,7 @@ export class LoginService {
 
 
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) { }
+  constructor(public afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore, private googlePlus: GooglePlus) { }
 
 
 
@@ -26,6 +28,9 @@ export class LoginService {
       this.router.navigateByUrl('tabs');
 
 
+    }, err => {
+        // tslint:disable-next-line:no-unused-expression
+        console.log('danger', err.message);
     });
   }
 
@@ -33,6 +38,31 @@ export class LoginService {
   async signOut() {
     await this.afAuth.auth.signOut();
     this.router.navigateByUrl('login');
+  }
+
+
+  async nativeGoogleLogin() {
+
+    try {
+
+      const gplusUser = await this.googlePlus.login({
+        'webClientId:': '1077553925466-8ske7ap3u16s4gv6gmvdgfh3pui3hsea.apps.googleusercontent.com',
+        offline: true,
+        scopes: 'profile email'
+      });
+
+
+      return await this.afAuth.auth.signInWithCredential(
+        firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)
+      ).then(() => {
+        this.router.navigateByUrl('tabs');
+      });
+    } catch (err) {
+
+      console.log(err);
+
+    }
+
   }
 
 }

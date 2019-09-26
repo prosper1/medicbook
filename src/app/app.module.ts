@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 
 const firebaseConfig = {
@@ -40,6 +41,7 @@ const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    GooglePlus,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
