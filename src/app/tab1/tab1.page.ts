@@ -22,7 +22,8 @@ export class Tab1Page {
     public api: ApiService,
     public loadingController: LoadingController,
     public router: Router,
-    public route: ActivatedRoute,private afa: AngularFireAuth) {this.getBookings()}
+    public route: ActivatedRoute,
+    private afa: AngularFireAuth) {this.getBookings()}
 
   async getBookings() {
     const loading = await this.loadingController.create({
