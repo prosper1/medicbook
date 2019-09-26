@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
+
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
