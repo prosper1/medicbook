@@ -14,16 +14,18 @@ import { AngularFireModule } from '@angular/fire';
 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
+
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDBSFxQH49mtpFj0ucJsBk9d61HuG0GpMM",
-  authDomain: "hospital-9033d.firebaseapp.com",
-  databaseURL: "https://hospital-9033d.firebaseio.com",
-  projectId: "hospital-9033d",
-  storageBucket: "",
-  messagingSenderId: "1077553925466",
-  appId: "1:1077553925466:web:e5eb46208ffe6b55"
+  apiKey: 'AIzaSyDBSFxQH49mtpFj0ucJsBk9d61HuG0GpMM',
+  authDomain: 'hospital-9033d.firebaseapp.com',
+  databaseURL: 'https://hospital-9033d.firebaseio.com',
+  projectId: 'hospital-9033d',
+  storageBucket: '',
+  messagingSenderId: '1077553925466',
+  appId: '1:1077553925466:web:e5eb46208ffe6b55'
 };
 
 
@@ -31,7 +33,7 @@ const firebaseConfig = {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     IonicModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,
@@ -43,6 +45,7 @@ const firebaseConfig = {
     StatusBar,
     SplashScreen,
     GooglePlus,
+    HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
